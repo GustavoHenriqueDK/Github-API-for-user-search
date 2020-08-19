@@ -1,6 +1,5 @@
 package com.example.githubapiforusersearch.view;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.githubapiforusersearch.R;
 import com.example.githubapiforusersearch.model.User;
 import com.example.githubapiforusersearch.rest.EndPoint;
-import com.example.githubapiforusersearch.retrofit.RetrofitConfiguration;
+import com.example.githubapiforusersearch.rest.RetrofitConfiguration;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("User error ", "user don't have a name signed");
                         }
                     }
+
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         Log.e("Error executing API ", t.toString());
