@@ -1,5 +1,6 @@
 package com.example.githubapiforusersearch.view;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,16 +46,17 @@ public class MainActivity extends AppCompatActivity {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        Log.e("User nickname ", response.body().getNickname());
-                        Log.e("User followers ", response.body().getFollowers());
-                        Log.e("User following ", response.body().getFollowing());
+                        //TODO: Get image and make a "wait" dialog;
+                        textviewUsername.setText(response.body().getNickname());
+                        textViewFollowers.setText(response.body().getFollowers());
+                        textViewFollowing.setText(response.body().getFollowing());
                         try {
-                            Log.e("User e-mail ", response.body().getEmail());
+                            textViewEmail.setText(response.body().getEmail());
                         } catch (Exception e) {
                             Log.e("User error ", "user don't have a e-mail signed");
                         }
                         try {
-                            Log.e("User name ", response.body().getName());
+                            textViewUserRealName.setText(response.body().getName());
                         } catch (Exception e) {
                             Log.e("User error ", "user don't have a name signed");
                         }
