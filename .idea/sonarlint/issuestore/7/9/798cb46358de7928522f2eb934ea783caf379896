@@ -1,12 +1,2 @@
 
-q
-java:S1128"TRemove this unused import 'com.google.android.material.shape.MaterialShapeDrawable'.(¤‹¬Ï8ËòŞÀ.
-W
-java:S1128":Remove this unused import 'androidx.core.view.ViewCompat'.(êŠ‡²8ËòŞÀ.
-p
-java:S1128"SRemove this unused import 'com.google.android.material.shape.ShapeAppearanceModel'.(½À˜º8ËòŞÀ.
-Q	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±
-b
-java:S1128"@Remove this unused import 'androidx.core.content.ContextCompat'.(üäÂùÿÿÿÿ8ËòŞÀ.
-m
-java:S1128"KRemove this unused import 'com.google.android.material.shape.CornerFamily'.(¶¿ßğûÿÿÿÿ8ËòŞÀ.
+X	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±8¦ìÇèÀ.

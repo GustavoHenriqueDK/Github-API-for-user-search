@@ -17,3 +17,7 @@ W
 '.idea/dictionaries/Gustavo_Henrique.xml,4\3\43709cbe2d5ca56c2c14442f42e13ad2de199e61
 c
 3app/src/main/res/drawable/ic_baseline_search_24.xml,f\7\f739e1a582ae6189355f067801a6685283bfb145
+R
+"app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
+w
+Gapp/src/main/res/drawable/constraint_layout_user_informations_shape.xml,d\4\d499c76c88dda56097e682ac3f5b3238abaea6a4
