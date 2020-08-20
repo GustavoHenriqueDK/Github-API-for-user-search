@@ -14,5 +14,7 @@ data class User(
     @SerializedName("avatar_url")
     val avatar: String,
     @SerializedName("email")
-    val email: String
+    val email: String,
+    @SerializedName("company")
+    val company: String
 ) {}

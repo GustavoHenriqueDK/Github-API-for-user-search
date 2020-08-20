@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewFollowers;
     private TextView textViewFollowing;
     private TextView textViewEmail;
+    private TextView textViewCompany;
     private Button button;
 
     @Override
@@ -63,15 +64,28 @@ public class MainActivity extends AppCompatActivity {
                         thread.start();
 
                         try {
-                            textViewEmail.setText(response.body().getEmail());
-                        } catch (Exception e) {
-                            Log.e("User error ", "user don't have a e-mail signed");
-                        }
-                        try {
                             textViewUsername.setText(response.body().getName());
                         } catch (Exception e) {
                             Log.e("User error ", "user don't have a name signed");
                         }
+                        try {
+                            textViewCompany.setText(response.body().getCompany());
+                        } catch (Exception e) {
+                            Log.e("User error ", "user don't have a name signed");
+                        }
+
+                        try {
+                            textViewEmail.setText(response.body().getEmail());
+                        } catch (Exception e) {
+                            Log.e("User error ", "user don't have a e-mail signed");
+                        }
+
+                        try {
+                            textViewEmail.setText(response.body().getEmail());
+                        } catch (Exception e) {
+                            Log.e("User error ", "user don't have a e-mail signed");
+                        }
+
                     }
 
                     @Override
@@ -90,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         textViewFollowing = findViewById(R.id.textViewFollowing);
         textViewFollowers = findViewById(R.id.textViewFollowers);
         textViewEmail = findViewById(R.id.textViewEmail);
+        textViewCompany = findViewById(R.id.textViewCompany);
         imageViewAvatar = findViewById(R.id.imageViewUserPhotoProfile);
         button = findViewById(R.id.buttonSearch);
     }
