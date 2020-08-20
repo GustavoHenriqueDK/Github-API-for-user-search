@@ -120,12 +120,18 @@
         android:id="@+id/constraintLayoutUserInformations"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="37dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/constraint_layout_user_informations_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDark"
-        app:layout_constraintVertical_bias="0.060000002">
+        app:layout_constraintVertical_bias="0.114">
 
         <ImageView
             android:id="@+id/imageViewUserPhotoProfile"

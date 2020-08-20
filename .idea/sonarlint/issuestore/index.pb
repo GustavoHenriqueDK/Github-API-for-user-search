@@ -7,8 +7,6 @@ Gapp/src/main/java/com/example/githubapiforusersearch/rest/EndPoint.java,9\3\93
 Tapp/src/main/java/com/example/githubapiforusersearch/rest/RetrofitConfiguration.java,4\c\4cbc3f9ae1f22a458fa2d3e6558f00659cd6a79c
 r
 Bapp/src/main/java/com/example/githubapiforusersearch/model/User.kt,1\c\1c61bfdb45900354602a42afbaa356660a4a5a2d
-j
-:app/src/main/res/drawable/edit_text_rounded_background.xml,6\7\67ea4d64a8c2a5ca0eeedeed288414819331f25f
 Z
 *app/src/main/res/drawable/account_icon.xml,5\1\51870753481be86c201aac8e73828eef3492b24f
 R
