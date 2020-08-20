@@ -331,11 +331,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserrepository"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepository"
             app:layout_constraintVertical_bias="0.35000002" />
 
         <TextView
-            android:id="@+id/textViewUserrepository"
+            android:id="@+id/textViewRepository"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"

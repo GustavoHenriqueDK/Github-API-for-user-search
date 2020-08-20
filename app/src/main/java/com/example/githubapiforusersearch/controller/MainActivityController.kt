@@ -17,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivityController(val context: Context) {
+class MainActivityController(private val context: Context) {
 
     fun requestAPI(
         userNameRequest: EditText,
@@ -105,7 +105,7 @@ class MainActivityController(val context: Context) {
                 textViewCompany.setText(R.string.not_specified_user_erro)
                 textViewCompany.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
             } else {
-                textViewCompany.text = response.body()?.name
+                textViewCompany.text = response.body()?.company
                 textViewCompany.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
             }
         } catch (e: Exception) {
@@ -127,7 +127,7 @@ class MainActivityController(val context: Context) {
                 textViewEmail.setText(R.string.not_specified_user_erro)
                 textViewEmail.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
             } else {
-                textViewEmail.text = response.body()?.name
+                textViewEmail.text = response.body()?.email
                 textViewEmail.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
             }
         } catch (e: Exception) {

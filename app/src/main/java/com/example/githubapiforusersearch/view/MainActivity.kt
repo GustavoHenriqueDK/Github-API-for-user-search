@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             textViewFollowing,
             textViewFollowers,
             textViewEmail,
-            textViewUserrepository,
+            textViewRepository,
             textViewCompany,
             constraintLayoutUserInformations,
             constraintLayoutUserNotFound,
