@@ -9,16 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 
 import com.example.githubapiforusersearch.R;
+import com.example.githubapiforusersearch.controller.ConvertURL;
 import com.example.githubapiforusersearch.model.User;
 import com.example.githubapiforusersearch.rest.EndPoint;
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration;
-import com.google.android.material.shape.CornerFamily;
-import com.google.android.material.shape.MaterialShapeDrawable;
-import com.google.android.material.shape.ShapeAppearanceModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,11 +46,22 @@ public class MainActivity extends AppCompatActivity {
                 Call<User> call = endPoint.getUser(editTextNickname.getText().toString());
                 call.enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        //TODO: Get image and make a "wait" dialog;
+                    public void onResponse(Call<User> call, final Response<User> response) {
                         textViewNickname.setText(response.body().getNickname());
                         textViewFollowers.setText(response.body().getFollowers());
                         textViewFollowing.setText(response.body().getFollowing());
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    imageViewAvatar.setImageBitmap(ConvertURL.getBitmapFromURL(response.body().getAvatar()));
+                                } catch (Exception e) {
+                                    Log.e("Error executing ", e.toString());
+                                }
+                            }
+                        });
+                        thread.start();
+
                         try {
                             textViewEmail.setText(response.body().getEmail());
                         } catch (Exception e) {
@@ -75,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void findViews() {
         textViewNickname = findViewById(R.id.textViewNickname);
         textViewUsername = findViewById(R.id.textViewUsername);
