@@ -101,7 +101,7 @@ class MainActivityController(private val context: Context) {
 
     private fun setUserCompany(textViewCompany: TextView, response: Response<User>) {
         try {
-            if (response.body()?.name == null) {
+            if (response.body()?.company == null) {
                 textViewCompany.setText(R.string.not_specified_user_erro)
                 textViewCompany.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
             } else {
@@ -123,7 +123,7 @@ class MainActivityController(private val context: Context) {
 
     private fun setUserEmail(textViewEmail: TextView, response: Response<User>) {
         try {
-            if (response.body()?.name == null) {
+            if (response.body()?.email == null) {
                 textViewEmail.setText(R.string.not_specified_user_erro)
                 textViewEmail.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
             } else {
