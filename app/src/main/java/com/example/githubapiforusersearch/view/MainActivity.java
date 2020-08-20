@@ -26,10 +26,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextUserName;
     private ImageView imageViewAvatar;
-    private TextView textviewUsername;
-    private TextView textViewUserRealName;
+    private TextView textViewUsername;
+    private TextView textViewNickname;
+    private EditText editTextNickname;
     private TextView textViewFollowers;
     private TextView textViewFollowing;
     private TextView textViewEmail;
@@ -40,49 +40,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        //  findViews();
+        findViews();
 
-//        final EndPoint endPoint = RetrofitConfiguration.getClient().create(EndPoint.class);
+        final EndPoint endPoint = RetrofitConfiguration.getClient().create(EndPoint.class);
 
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Call<User> call = endPoint.getUser(editTextUserName.getText().toString());
-//                call.enqueue(new Callback<User>() {
-//                    @Override
-//                    public void onResponse(Call<User> call, Response<User> response) {
-//                        //TODO: Get image and make a "wait" dialog;
-//                        textviewUsername.setText(response.body().getNickname());
-//                        textViewFollowers.setText(response.body().getFollowers());
-//                        textViewFollowing.setText(response.body().getFollowing());
-//                        try {
-//                            textViewEmail.setText(response.body().getEmail());
-//                        } catch (Exception e) {
-//                            Log.e("User error ", "user don't have a e-mail signed");
-//                        }
-//                        try {
-//                            textViewUserRealName.setText(response.body().getName());
-//                        } catch (Exception e) {
-//                            Log.e("User error ", "user don't have a name signed");
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<User> call, Throwable t) {
-//                        Log.e("Error executing API ", t.toString());
-//                    }
-//                });
-//            }
-//        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Call<User> call = endPoint.getUser(editTextNickname.getText().toString());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        //TODO: Get image and make a "wait" dialog;
+                        textViewNickname.setText(response.body().getNickname());
+                        textViewFollowers.setText(response.body().getFollowers());
+                        textViewFollowing.setText(response.body().getFollowing());
+                        try {
+                            textViewEmail.setText(response.body().getEmail());
+                        } catch (Exception e) {
+                            Log.e("User error ", "user don't have a e-mail signed");
+                        }
+                        try {
+                            textViewUsername.setText(response.body().getName());
+                        } catch (Exception e) {
+                            Log.e("User error ", "user don't have a name signed");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Log.e("Error executing API ", t.toString());
+                    }
+                });
+            }
+        });
     }
-//    private void findViews() {
-//        textviewUsername = findViewById(R.id.textViewUsername);
-//        textViewFollowers = findViewById(R.id.textViewFollowers);
-//        textViewFollowing = findViewById(R.id.textViewFollowing);
-//        textViewEmail = findViewById(R.id.textViewEmail);
-//        editTextUserName = findViewById(R.id.editTextTextUsername);
-//        imageViewAvatar = findViewById(R.id.imageViewUser);
-//        textViewUserRealName = findViewById(R.id.textViewUserRealName);
-//        button = findViewById(R.id.button);
-//    }
+    private void findViews() {
+        textViewNickname = findViewById(R.id.textViewNickname);
+        textViewUsername = findViewById(R.id.textViewUsername);
+        editTextNickname = findViewById(R.id.editTextNickname);
+        textViewFollowing = findViewById(R.id.textViewFollowing);
+        textViewFollowers = findViewById(R.id.textViewFollowers);
+        textViewEmail = findViewById(R.id.textViewEmail);
+        imageViewAvatar = findViewById(R.id.imageViewUserPhotoProfile);
+        button = findViewById(R.id.buttonSearch);
+    }
 }
