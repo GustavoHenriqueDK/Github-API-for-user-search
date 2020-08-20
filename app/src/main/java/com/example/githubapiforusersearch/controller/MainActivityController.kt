@@ -1,9 +1,15 @@
 package com.example.githubapiforusersearch.controller
 
+import android.content.Context
+import android.graphics.Color
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import com.example.githubapiforusersearch.R
 import com.example.githubapiforusersearch.model.User
 import com.example.githubapiforusersearch.rest.EndPoint
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration
@@ -11,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivityController {
+class MainActivityController(val context: Context) {
 
     fun requestAPI(
         userNameRequest: EditText,
@@ -22,30 +28,46 @@ class MainActivityController {
         textViewFollowers: TextView,
         textViewEmail: TextView,
         textViewRepository: TextView,
-        textViewCompany: TextView
+        textViewCompany: TextView,
+        constraintLayoutUserInformations: ConstraintLayout,
+        constraintLayoutUserNotFound: ConstraintLayout,
+        constraintLayoutWhiteFlag: ConstraintLayout
     ) {
         val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
 
-        val call = endPoint.getUser(userNameRequest.text.toString())
+        val call = endPoint.getUser(userNameRequest.text.toString().trim())
 
         call.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
 
-                setUserPhotoProfile(imageViewUserPhotoProfile, response)
+                hideWhiteFlagConstraint(constraintLayoutWhiteFlag)
 
-                setUserNickname(textViewNickname, response)
+                if (isValidUserNickname(response)) {
+                    showUserInformationsConstraint(
+                        constraintLayoutUserInformations,
+                        constraintLayoutUserNotFound
+                    )
+                    setUserPhotoProfile(imageViewUserPhotoProfile, response)
 
-                setUserName(textViewUsername, response)
+                    setUserNickname(textViewNickname, response)
 
-                setUserFollowing(textViewFollowing, response)
+                    setUserName(textViewUsername, response)
 
-                setUserFollowers(textViewFollowers, response)
+                    setUserFollowing(textViewFollowing, response)
 
-                setUserEmail(textViewEmail, response)
+                    setUserFollowers(textViewFollowers, response)
 
-                setUserRepositorySize(textViewRepository, response)
+                    setUserEmail(textViewEmail, response)
 
-                setUserCompany(textViewCompany, response)
+                    setUserRepositorySize(textViewRepository, response)
+
+                    setUserCompany(textViewCompany, response)
+                } else {
+                    showEmptyImageConstraint(
+                        constraintLayoutUserInformations,
+                        constraintLayoutUserNotFound
+                    )
+                }
             }
 
             override fun onFailure(
@@ -57,9 +79,35 @@ class MainActivityController {
         })
     }
 
+    private fun hideWhiteFlagConstraint(constraintLayoutWhiteFlag: ConstraintLayout) {
+        constraintLayoutWhiteFlag.visibility = View.GONE
+    }
+
+    private fun showEmptyImageConstraint(
+        constraintLayoutUserInformations: ConstraintLayout,
+        constraintLayoutUserNotFound: ConstraintLayout
+    ) {
+        constraintLayoutUserInformations.visibility = View.GONE
+        constraintLayoutUserNotFound.visibility = View.VISIBLE
+    }
+
+    private fun showUserInformationsConstraint(
+        constraintLayoutUserInformations: ConstraintLayout,
+        constraintLayoutUserNotFound: ConstraintLayout
+    ) {
+        constraintLayoutUserInformations.visibility = View.VISIBLE
+        constraintLayoutUserNotFound.visibility = View.GONE
+    }
+
     private fun setUserCompany(textViewCompany: TextView, response: Response<User>) {
         try {
-            textViewCompany.text = response.body()!!.company
+            if (response.body()?.name == null) {
+                textViewCompany.setText(R.string.not_specified_user_erro)
+                textViewCompany.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
+            } else {
+                textViewCompany.text = response.body()?.name
+                textViewCompany.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
+            }
         } catch (e: Exception) {
             Log.e("Company error ", e.toString())
         }
@@ -75,7 +123,13 @@ class MainActivityController {
 
     private fun setUserEmail(textViewEmail: TextView, response: Response<User>) {
         try {
-            textViewEmail.text = response.body()?.email
+            if (response.body()?.name == null) {
+                textViewEmail.setText(R.string.not_specified_user_erro)
+                textViewEmail.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
+            } else {
+                textViewEmail.text = response.body()?.name
+                textViewEmail.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
+            }
         } catch (e: Exception) {
             Log.e("E-mail error ", e.toString())
         }
@@ -91,8 +145,16 @@ class MainActivityController {
 
     private fun setUserName(textViewUsername: TextView, response: Response<User>) {
         try {
-            textViewUsername.text = response.body()?.name
+            if (response.body()?.name == null) {
+                textViewUsername.setText(R.string.not_specified_user_erro)
+                textViewUsername.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
+            } else {
+                textViewUsername.text = response.body()?.name
+                textViewUsername.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
+            }
         } catch (e: Exception) {
+
+
             Log.e("Username error ", e.toString())
         }
     }
@@ -118,4 +180,9 @@ class MainActivityController {
     private fun setUserNickname(textViewNickname: TextView, response: Response<User>) {
         textViewNickname.text = response.body()?.nickname
     }
+
+    private fun isValidUserNickname(response: Response<User>): Boolean {
+        return response.body()?.nickname != null
+    }
+
 }

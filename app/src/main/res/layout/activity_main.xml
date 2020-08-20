@@ -85,7 +85,7 @@
         android:id="@+id/constraintLayoutWhiteFlag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +126,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/constraint_layout_user_informations_shape"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -407,6 +408,41 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewIconRepository"
             app:layout_constraintVertical_bias="0.302"
             app:srcCompat="@drawable/job_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutUserNotFound"
+        android:layout_width="332dp"
+        android:layout_height="326dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDark">
+
+        <ImageView
+            android:id="@+id/imageViewErrorSearch"
+            android:layout_width="95dp"
+            android:layout_height="109dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.295"
+            app:srcCompat="@drawable/error_icon" />
+
+        <TextView
+            android:id="@+id/textViewUserNonexistent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oh, parece que esse usuário não existe..."
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewErrorSearch"
+            app:layout_constraintVertical_bias="0.104" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

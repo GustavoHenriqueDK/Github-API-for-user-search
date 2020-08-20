@@ -5,4 +5,5 @@
     <color name="DarkModeBackground2">#0D0D0D</color>
     <color name="colorWhite">#fff</color>
     <color name="colorGrey">#C3C3C3</color>
+    <color name="colorRed">#E54948</color>
 </resources>
