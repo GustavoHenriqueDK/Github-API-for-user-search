@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestAPI() {
-        val mainActivityController: MainActivityController = MainActivityController()
+        val mainActivityController: MainActivityController = MainActivityController(this)
 
         mainActivityController.requestAPI(
             editTextNickname,
@@ -34,7 +34,10 @@ class MainActivity : AppCompatActivity() {
             textViewFollowers,
             textViewEmail,
             textViewUserrepository,
-            textViewCompany
+            textViewCompany,
+            constraintLayoutUserInformations,
+            constraintLayoutUserNotFound,
+            constraintLayoutWhiteFlag
         )
     }
 }
