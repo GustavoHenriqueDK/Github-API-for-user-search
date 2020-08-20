@@ -4,7 +4,7 @@
     <solid
         android:color="@color/DarkModeBackground">
     </solid>
-    <stroke android:width="0.5dip" android:color="#C3C3C3"/>
+    <stroke android:width="0.5dip" android:color="@color/colorGrey"/>
     <corners
         android:bottomLeftRadius="10dp"
         android:topLeftRadius="10dp"
