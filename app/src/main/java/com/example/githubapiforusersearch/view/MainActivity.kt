@@ -25,29 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun buttonSearchClick() {
         buttonSearch.setOnClickListener {
-            //requestAPI()
-            testFunction()
+            requestAPI()
         }
-    }
-
-    private fun testFunction() {
-        val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
-        val callbackList = endPoint.getUserRepositories(editTextNickname.text.toString().trim())
-
-        callbackList.enqueue(object : Callback<List<Repository>> {
-            override fun onResponse(
-                call: Call<List<Repository>>,
-                response: Response<List<Repository>>
-            ) {
-                for (i in response.body()?.indices!!) {
-                    Log.i("let's go ", response.body()?.get(i)?.name)
-                }
-            }
-
-            override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
-                Log.e("catch an error ", t.toString())
-            }
-        })
     }
 
     private fun requestAPI() {
