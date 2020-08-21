@@ -8,4 +8,7 @@ import retrofit2.http.Path
 interface EndPoint {
     @GET("users/{user}")
     fun getUser(@Path("user") user: String): Call<User>
+
+    @GET("/users/{user}/repos")
+    fun getUserRepositories(@Path("user") user: String): List<Call<User>>
 }

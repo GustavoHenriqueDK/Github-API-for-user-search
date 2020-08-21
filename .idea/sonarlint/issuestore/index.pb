@@ -1,8 +1,4 @@
 
-{
-Kapp/src/main/java/com/example/githubapiforusersearch/view/MainActivity.java,7\9\798cb46358de7928522f2eb934ea783caf379896
-w
-Gapp/src/main/java/com/example/githubapiforusersearch/rest/EndPoint.java,9\3\93c9983a3034f2883ef2a8705c9ef7dd213438e9
 „
 Tapp/src/main/java/com/example/githubapiforusersearch/rest/RetrofitConfiguration.java,4\c\4cbc3f9ae1f22a458fa2d3e6558f00659cd6a79c
 r
@@ -19,3 +15,15 @@ c
 3app/src/main/res/drawable/ic_baseline_search_24.xml,f\7\f739e1a582ae6189355f067801a6685283bfb145
 w
 Gapp/src/main/res/drawable/constraint_layout_user_informations_shape.xml,d\4\d499c76c88dda56097e682ac3f5b3238abaea6a4
+R
+"app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
+S
+#app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
+Y
+)app/src/main/res/layout/activity_main.xml,7\6\76b07e40f24cce093536731477540f12e7da3cb6
+y
+Iapp/src/main/java/com/example/githubapiforusersearch/view/MainActivity.kt,7\5\75d6a278cca395cfbb4281ca57b4a474a2a45782
+}
+Mapp/src/main/java/com/example/githubapiforusersearch/controller/ConvertURL.kt,a\8\a80a239eea0f00d930ad77e3695f886affdd1e56
+‰
+Yapp/src/main/java/com/example/githubapiforusersearch/controller/MainActivityController.kt,9\e\9e52a8342150c478b44edd489a7b46dd6e7c3493
