@@ -1,6 +1,8 @@
 package com.example.githubapiforusersearch.controller
 
 import android.content.Context
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -18,6 +20,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivityController(private val context: Context) {
+
+    companion object {
+        const val HAVE_SOME_REPOSITORY: String = "have_some_repository"
+    }
 
     fun requestAPI(
         userNameRequest: EditText,
@@ -90,6 +96,10 @@ class MainActivityController(private val context: Context) {
         })
     }
 
+    private fun userHaveSomeRepository(response: Response<List<Repository>>): Boolean {
+        return response.body()?.size!! > 0
+    }
+
     private fun hideWhiteFlagConstraint(constraintLayoutWhiteFlag: ConstraintLayout) {
         constraintLayoutWhiteFlag.visibility = View.GONE
     }
@@ -129,6 +139,10 @@ class MainActivityController(private val context: Context) {
         response: Response<List<Repository>>
     ) {
         textViewRepository.text = response.body()?.size.toString()
+        if (userHaveSomeRepository(response))
+            textViewRepository.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        else
+            textViewRepository.typeface = Typeface.DEFAULT
     }
 
     private fun setUserEmail(textViewEmail: TextView, response: Response<User>) {

@@ -19,8 +19,6 @@ R
 "app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
 S
 #app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
-Y
-)app/src/main/res/layout/activity_main.xml,7\6\76b07e40f24cce093536731477540f12e7da3cb6
 y
 Iapp/src/main/java/com/example/githubapiforusersearch/view/MainActivity.kt,7\5\75d6a278cca395cfbb4281ca57b4a474a2a45782
 }
