@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Repository(
     @SerializedName("name")
-    val name: String
+    val name: String,
+    @SerializedName("language")
+    val language: String
 ) {
 }
