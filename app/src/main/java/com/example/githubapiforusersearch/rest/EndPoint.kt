@@ -10,5 +10,5 @@ interface EndPoint {
     fun getUser(@Path("user") user: String): Call<User>
 
     @GET("/users/{user}/repos")
-    fun getUserRepositories(@Path("user") user: String): List<Call<User>>
+    fun getUserRepositories(@Path("user") user: String): Call<List<Integer>>
 }
