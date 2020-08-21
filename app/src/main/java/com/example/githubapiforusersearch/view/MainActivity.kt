@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.githubapiforusersearch.R
 import com.example.githubapiforusersearch.controller.MainActivityController
-import com.example.githubapiforusersearch.model.User
+import com.example.githubapiforusersearch.model.Repository
 import com.example.githubapiforusersearch.rest.EndPoint
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,12 +33,19 @@ class MainActivity : AppCompatActivity() {
     private fun testFunction() {
         val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
         val callbackList = endPoint.getUserRepositories(editTextNickname.text.toString().trim())
-        callbackList.enqueue(object : Callback<List<Integer>> {
-            override fun onResponse(call: Call<List<Integer>>, response: Response<List<Integer>>) {
-                TODO("Not yet implemented")
+
+        callbackList.enqueue(object : Callback<List<Repository>> {
+            override fun onResponse(
+                call: Call<List<Repository>>,
+                response: Response<List<Repository>>
+            ) {
+                for (i in response.body()?.indices!!) {
+                    Log.i("let's go ", response.body()?.get(i)?.name)
+                }
             }
-            override fun onFailure(call: Call<List<Integer>>, t: Throwable) {
-                TODO("Not yet implemented")
+
+            override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
+                Log.e("catch an error ", t.toString())
             }
         })
     }
