@@ -1,36 +1,66 @@
 package com.example.githubapiforusersearch.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapiforusersearch.R
 import com.example.githubapiforusersearch.model.Repository
+import com.example.githubapiforusersearch.rest.EndPoint
+import com.example.githubapiforusersearch.rest.RetrofitConfiguration
 import com.example.githubapiforusersearch.view.adapter.RecyclerViewRepositoryAdapter
 import kotlinx.android.synthetic.main.activity_user_repository.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserRepositoryActivity : AppCompatActivity() {
 
     private val repositoryList = ArrayList<Repository>()
+    private val recyclerViewRepositoryAdapter = RecyclerViewRepositoryAdapter(repositoryList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_repository)
         supportActionBar?.hide()
 
-        //Testing
-        val repository = Repository("Github search", "Kotlin")
-        val repository2 = Repository("My project name", "Java")
-        val repository3 = Repository("My JS project", "JavaScript")
-
-        repositoryList.add(repository)
-        repositoryList.add(repository2)
-        repositoryList.add(repository3)
-
+        requestAPI()
         setRepositoryAdapter()
     }
 
+    private fun requestAPI() {
+        val extras: Bundle = intent.extras!!
+        var myString: String = ""
+        if (extras != null) {
+            myString = extras.getString("key")!!
+        }
+
+        val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
+
+        val callList = endPoint.getUserRepositories(myString)
+        callList.enqueue(object : Callback<List<Repository>> {
+            override fun onResponse(
+                call: Call<List<Repository>>,
+                response: Response<List<Repository>>
+            ) {
+                //TODO later...
+                for (i in response.body()!!.indices) {
+                    val repository = Repository(
+                        response.body()?.get(i)!!.name,
+                        response.body()?.get(i)!!.language
+                    )
+                    repositoryList.add(repository)
+                }
+                recyclerViewRepositoryAdapter.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
+                Log.e("An error occurred ", t.toString())
+            }
+        })
+    }
+
     private fun setRepositoryAdapter() {
-        val recyclerViewRepositoryAdapter = RecyclerViewRepositoryAdapter(repositoryList)
         recyclerViewRepository.adapter = recyclerViewRepositoryAdapter
         recyclerViewRepository.layoutManager = LinearLayoutManager(this)
         recyclerViewRepositoryAdapter.notifyDataSetChanged()

@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private fun textViewRepositoryClick() {
         textViewRepository.setOnClickListener {
             val intent = Intent(this, UserRepositoryActivity::class.java)
+            intent.putExtra("key", editTextNickname.text.toString())
             startActivity(intent)
         }
     }
