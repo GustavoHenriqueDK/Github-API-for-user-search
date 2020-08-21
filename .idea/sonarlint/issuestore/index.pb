@@ -5,8 +5,6 @@ r
 Bapp/src/main/java/com/example/githubapiforusersearch/model/User.kt,1\c\1c61bfdb45900354602a42afbaa356660a4a5a2d
 Z
 *app/src/main/res/drawable/account_icon.xml,5\1\51870753481be86c201aac8e73828eef3492b24f
-R
-"app/src/main/res/values/styles.xml,f\7\f79cc2688e29fcbc286fda14ae07b27c9e83690f
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 W
@@ -15,10 +13,6 @@ c
 3app/src/main/res/drawable/ic_baseline_search_24.xml,f\7\f739e1a582ae6189355f067801a6685283bfb145
 w
 Gapp/src/main/res/drawable/constraint_layout_user_informations_shape.xml,d\4\d499c76c88dda56097e682ac3f5b3238abaea6a4
-R
-"app/src/main/res/values/colors.xml,9\6\969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
-S
-#app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
 y
 Iapp/src/main/java/com/example/githubapiforusersearch/view/MainActivity.kt,7\5\75d6a278cca395cfbb4281ca57b4a474a2a45782
 }
