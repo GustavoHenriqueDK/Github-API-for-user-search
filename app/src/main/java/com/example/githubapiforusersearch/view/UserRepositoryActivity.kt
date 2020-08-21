@@ -43,13 +43,16 @@ class UserRepositoryActivity : AppCompatActivity() {
                 call: Call<List<Repository>>,
                 response: Response<List<Repository>>
             ) {
-                //TODO later...
                 for (i in response.body()!!.indices) {
-                    val repository = Repository(
-                        response.body()?.get(i)!!.name,
-                        response.body()?.get(i)!!.language
-                    )
-                    repositoryList.add(repository)
+                    if (response.body()!![i].language != null) {
+                        val repository = Repository(
+                            response.body()?.get(i)!!.name,
+                            response.body()?.get(i)!!.language
+                        )
+                        repositoryList.add(repository)
+                    } else {
+                        response.body()!![i].language = "Não especificado"
+                    }
                 }
                 recyclerViewRepositoryAdapter.notifyDataSetChanged()
             }
