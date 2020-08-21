@@ -139,10 +139,15 @@ class MainActivityController(private val context: Context) {
         response: Response<List<Repository>>
     ) {
         textViewRepository.text = response.body()?.size.toString()
-        if (userHaveSomeRepository(response))
-            textViewRepository.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        else
-            textViewRepository.typeface = Typeface.DEFAULT
+        try {
+            if (userHaveSomeRepository(response))
+                textViewRepository.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+            else
+                textViewRepository.typeface = Typeface.DEFAULT
+        } catch (e: Exception) {
+            Log.e("error ", e.toString())
+        }
+
     }
 
     private fun setUserEmail(textViewEmail: TextView, response: Response<User>) {
