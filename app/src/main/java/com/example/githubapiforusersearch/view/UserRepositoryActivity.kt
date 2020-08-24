@@ -2,6 +2,7 @@ package com.example.githubapiforusersearch.view
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapiforusersearch.R
@@ -40,7 +41,11 @@ class UserRepositoryActivity : AppCompatActivity() {
                 call: Call<List<Repository>>,
                 response: Response<List<Repository>>
             ) {
-                responseRepositoryInformations(response)
+                if (response.body()!!.isNotEmpty()) {
+                    responseRepositoryInformations(response)
+                } else {
+                    showEmptyImageInScreen()
+                }
                 recyclerViewRepositoryAdapter.notifyDataSetChanged()
             }
 
@@ -48,6 +53,11 @@ class UserRepositoryActivity : AppCompatActivity() {
                 Log.e("An error occurred ", t.toString())
             }
         })
+    }
+
+    private fun showEmptyImageInScreen() {
+        constraintLayoutEmptyImage.visibility = View.VISIBLE
+        constraintLayoutRecyclerView.visibility = View.GONE
     }
 
     private fun responseRepositoryInformations(response: Response<List<Repository>>) {

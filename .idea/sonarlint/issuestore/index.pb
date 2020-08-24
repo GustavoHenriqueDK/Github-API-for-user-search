@@ -31,8 +31,6 @@ a
 bapp/src/main/java/com/example/githubapiforusersearch/view/adapter/RecyclerViewRepositoryAdapter.kt,6\1\617f6cea606cf6d4eb2d9ff194df7e2bf135b78a
 k
 ;app/src/main/res/layout/recycler_view_repository_layout.xml,a\3\a395cbde5538dbbf6b7033fcfb54f92a21385aaa
-d
-4app/src/main/res/layout/activity_user_repository.xml,b\b\bbcc642a867dd1bd806b88572095c5cf066c86ae
 x
 Happ/src/main/java/com/example/githubapiforusersearch/model/Repository.kt,3\8\3898f7e13b5a15a9f8e15d8ae769b03af3c11d76
 ƒ
