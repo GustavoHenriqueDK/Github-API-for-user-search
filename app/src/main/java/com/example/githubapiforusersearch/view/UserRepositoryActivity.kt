@@ -24,34 +24,23 @@ class UserRepositoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_repository)
         supportActionBar?.hide()
 
-        requestAPI()
+        setUserRepositories()
         setRepositoryAdapter()
     }
 
-    private fun requestAPI() {
+    private fun setUserRepositories() {
         val extras: Bundle = intent.extras!!
-        var myString: String = ""
-        if (extras != null) {
-            myString = extras.getString("key")!!
-        }
+        val extrasKey: String = extras.getString("key")!!
 
         val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
 
-        val callList = endPoint.getUserRepositories(myString)
+        val callList = endPoint.getUserRepositories(extrasKey)
         callList.enqueue(object : Callback<List<Repository>> {
             override fun onResponse(
                 call: Call<List<Repository>>,
                 response: Response<List<Repository>>
             ) {
-                for (i in response.body()?.indices!!) {
-                    if (response.body()!![i].language != null) {
-                        val repository = Repository(response.body()!![i].name, response.body()!![i].language)
-                        repositoryList.add(repository)
-                    } else {
-                        val repository = Repository(response.body()!![i].name, "Não especificado")
-                        repositoryList.add(repository)
-                    }
-                }
+                responseRepositoryInformations(response)
                 recyclerViewRepositoryAdapter.notifyDataSetChanged()
             }
 
@@ -59,6 +48,22 @@ class UserRepositoryActivity : AppCompatActivity() {
                 Log.e("An error occurred ", t.toString())
             }
         })
+    }
+
+    private fun responseRepositoryInformations(response: Response<List<Repository>>) {
+        lateinit var repository: Repository
+        for (i in response.body()?.indices!!) {
+            repository = if (hasLanguageInRepository(response, i)) {
+                Repository(response.body()!![i].name, language = response.body()!![i].language)
+            } else {
+                Repository(response.body()!![i].name, language = "Não especificado")
+            }
+            repositoryList.add(repository)
+        }
+    }
+
+    private fun hasLanguageInRepository(response: Response<List<Repository>>, index: Int): Boolean {
+        return response.body()?.get(index)?.language != null
     }
 
     private fun setRepositoryAdapter() {

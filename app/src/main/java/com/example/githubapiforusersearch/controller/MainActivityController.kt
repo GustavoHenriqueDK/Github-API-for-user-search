@@ -182,8 +182,6 @@ class MainActivityController(private val context: Context) {
                 textViewUsername.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
             }
         } catch (e: Exception) {
-
-
             Log.e("Username error ", e.toString())
         }
     }
