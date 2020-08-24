@@ -1,7 +1,8 @@
 package com.example.githubapiforusersearch.controller
 
 import android.content.Context
-import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.githubapiforusersearch.R
+import com.example.githubapiforusersearch.model.Repository
 import com.example.githubapiforusersearch.model.User
 import com.example.githubapiforusersearch.rest.EndPoint
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration
@@ -18,6 +20,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivityController(private val context: Context) {
+
+    companion object {
+        const val HAVE_SOME_REPOSITORY: String = "have_some_repository"
+    }
 
     fun requestAPI(
         userNameRequest: EditText,
@@ -35,9 +41,8 @@ class MainActivityController(private val context: Context) {
     ) {
         val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
 
-        val call = endPoint.getUser(userNameRequest.text.toString().trim())
-
-        call.enqueue(object : Callback<User> {
+        val callUser = endPoint.getUser(userNameRequest.text.toString().trim())
+        callUser.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
 
                 hideWhiteFlagConstraint(constraintLayoutWhiteFlag)
@@ -59,8 +64,6 @@ class MainActivityController(private val context: Context) {
 
                     setUserEmail(textViewEmail, response)
 
-                    setUserRepositorySize(textViewRepository, response)
-
                     setUserCompany(textViewCompany, response)
                 } else {
                     showEmptyImageConstraint(
@@ -77,6 +80,24 @@ class MainActivityController(private val context: Context) {
                 Log.e("Error executing API ", t.toString())
             }
         })
+
+        val callList = endPoint.getUserRepositories(userNameRequest.text.toString().trim())
+        callList.enqueue(object : Callback<List<Repository>> {
+            override fun onResponse(
+                call: Call<List<Repository>>,
+                response: Response<List<Repository>>
+            ) {
+                setUserRepositorySize(textViewRepository, response)
+            }
+
+            override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
+                Log.e("An error occurred", t.toString())
+            }
+        })
+    }
+
+    private fun userHaveSomeRepository(response: Response<List<Repository>>): Boolean {
+        return response.body()?.size!! > 0
     }
 
     private fun hideWhiteFlagConstraint(constraintLayoutWhiteFlag: ConstraintLayout) {
@@ -113,12 +134,20 @@ class MainActivityController(private val context: Context) {
         }
     }
 
-    private fun setUserRepositorySize(textViewRepository: TextView, response: Response<User>) {
+    private fun setUserRepositorySize(
+        textViewRepository: TextView,
+        response: Response<List<Repository>>
+    ) {
+        textViewRepository.text = response.body()?.size.toString()
         try {
-            //TODO: textViewRepository.text = response.body()!!.repository
+            if (userHaveSomeRepository(response))
+                textViewRepository.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+            else
+                textViewRepository.typeface = Typeface.DEFAULT
         } catch (e: Exception) {
-            Log.e("Repository error ", e.toString())
+            Log.e("error ", e.toString())
         }
+
     }
 
     private fun setUserEmail(textViewEmail: TextView, response: Response<User>) {
@@ -153,8 +182,6 @@ class MainActivityController(private val context: Context) {
                 textViewUsername.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
             }
         } catch (e: Exception) {
-
-
             Log.e("Username error ", e.toString())
         }
     }

@@ -1,5 +1,6 @@
 package com.example.githubapiforusersearch.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.githubapiforusersearch.R
@@ -14,11 +15,20 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.hide()
 
         buttonSearchClick()
+        textViewRepositoryClick()
     }
 
     private fun buttonSearchClick() {
         buttonSearch.setOnClickListener {
             requestAPI()
+        }
+    }
+
+    private fun textViewRepositoryClick() {
+        textViewRepository.setOnClickListener {
+            val intent = Intent(this, UserRepositoryActivity::class.java)
+            intent.putExtra("key", editTextNickname.text.toString())
+            startActivity(intent)
         }
     }
 

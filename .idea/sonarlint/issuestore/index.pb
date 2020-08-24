@@ -1,16 +1,10 @@
 
-{
-Kapp/src/main/java/com/example/githubapiforusersearch/view/MainActivity.java,7\9\798cb46358de7928522f2eb934ea783caf379896
-w
-Gapp/src/main/java/com/example/githubapiforusersearch/rest/EndPoint.java,9\3\93c9983a3034f2883ef2a8705c9ef7dd213438e9
 „
 Tapp/src/main/java/com/example/githubapiforusersearch/rest/RetrofitConfiguration.java,4\c\4cbc3f9ae1f22a458fa2d3e6558f00659cd6a79c
 r
 Bapp/src/main/java/com/example/githubapiforusersearch/model/User.kt,1\c\1c61bfdb45900354602a42afbaa356660a4a5a2d
 Z
 *app/src/main/res/drawable/account_icon.xml,5\1\51870753481be86c201aac8e73828eef3492b24f
-R
-"app/src/main/res/values/styles.xml,f\7\f79cc2688e29fcbc286fda14ae07b27c9e83690f
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 W
@@ -19,3 +13,27 @@ c
 3app/src/main/res/drawable/ic_baseline_search_24.xml,f\7\f739e1a582ae6189355f067801a6685283bfb145
 w
 Gapp/src/main/res/drawable/constraint_layout_user_informations_shape.xml,d\4\d499c76c88dda56097e682ac3f5b3238abaea6a4
+y
+Iapp/src/main/java/com/example/githubapiforusersearch/view/MainActivity.kt,7\5\75d6a278cca395cfbb4281ca57b4a474a2a45782
+}
+Mapp/src/main/java/com/example/githubapiforusersearch/controller/ConvertURL.kt,a\8\a80a239eea0f00d930ad77e3695f886affdd1e56
+‰
+Yapp/src/main/java/com/example/githubapiforusersearch/controller/MainActivityController.kt,9\e\9e52a8342150c478b44edd489a7b46dd6e7c3493
+u
+Eapp/src/main/java/com/example/githubapiforusersearch/rest/EndPoint.kt,e\d\edb007f8456b470a25332abe210c74c1510cdc7c
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
+a
+1app/src/main/res/drawable/recycler_view_shape.xml,d\2\d21c1a31b1fd5bd96782e605f8382a54e6c7e342
+’
+bapp/src/main/java/com/example/githubapiforusersearch/view/adapter/RecyclerViewRepositoryAdapter.kt,6\1\617f6cea606cf6d4eb2d9ff194df7e2bf135b78a
+k
+;app/src/main/res/layout/recycler_view_repository_layout.xml,a\3\a395cbde5538dbbf6b7033fcfb54f92a21385aaa
+d
+4app/src/main/res/layout/activity_user_repository.xml,b\b\bbcc642a867dd1bd806b88572095c5cf066c86ae
+x
+Happ/src/main/java/com/example/githubapiforusersearch/model/Repository.kt,3\8\3898f7e13b5a15a9f8e15d8ae769b03af3c11d76
+ƒ
+Sapp/src/main/java/com/example/githubapiforusersearch/view/UserRepositoryActivity.kt,4\8\48e667ee192b7408de9b9c48f39a02a06f4d46d2
