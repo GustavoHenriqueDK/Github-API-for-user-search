@@ -1,5 +1,6 @@
 package com.example.githubapiforusersearch.controller
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -18,6 +19,7 @@ import com.example.githubapiforusersearch.rest.RetrofitConfiguration
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MainActivityController(private val context: Context) {
 
@@ -40,6 +42,10 @@ class MainActivityController(private val context: Context) {
         constraintLayoutWhiteFlag: ConstraintLayout
     ) {
         val endPoint = RetrofitConfiguration.getClient().create(EndPoint::class.java)
+
+        val progressDialog: ProgressDialog = ProgressDialog(context, R.style.myAlertDialogStyle)
+        progressDialog.setMessage("Aguarde...")
+        progressDialog.show()
 
         val callUser = endPoint.getUser(userNameRequest.text.toString().trim())
         callUser.enqueue(object : Callback<User> {
@@ -71,6 +77,7 @@ class MainActivityController(private val context: Context) {
                         constraintLayoutUserNotFound
                     )
                 }
+                if (progressDialog.isShowing) progressDialog.dismiss()
             }
 
             override fun onFailure(
@@ -78,6 +85,7 @@ class MainActivityController(private val context: Context) {
                 t: Throwable
             ) {
                 Log.e("Error executing API ", t.toString())
+                if (progressDialog.isShowing) progressDialog.dismiss()
             }
         })
 
@@ -88,12 +96,15 @@ class MainActivityController(private val context: Context) {
                 response: Response<List<Repository>>
             ) {
                 setUserRepositorySize(textViewRepository, response)
+                if (progressDialog.isShowing) progressDialog.dismiss()
             }
 
             override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
                 Log.e("An error occurred", t.toString())
+                if (progressDialog.isShowing) progressDialog.dismiss()
             }
         })
+
     }
 
     private fun userHaveSomeRepository(response: Response<List<Repository>>): Boolean {
