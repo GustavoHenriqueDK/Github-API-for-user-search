@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Github API for User Search</string>
+    <string name="app_name">SearchHub</string>
     <string name="not_specified_user_erro">Não especificado</string>
 </resources>
