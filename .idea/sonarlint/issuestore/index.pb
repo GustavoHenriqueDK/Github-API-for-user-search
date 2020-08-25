@@ -35,8 +35,6 @@ Happ/src/main/java/com/example/githubapiforusersearch/model/Repository.kt,3\8\3
 Sapp/src/main/java/com/example/githubapiforusersearch/view/UserRepositoryActivity.kt,4\8\48e667ee192b7408de9b9c48f39a02a06f4d46d2
 R
 "app/src/main/res/values/styles.xml,f\7\f79cc2688e29fcbc286fda14ae07b27c9e83690f
-d
-4app/src/main/res/layout/activity_user_repository.xml,b\b\bbcc642a867dd1bd806b88572095c5cf066c86ae
 W
 'app/src/main/res/font/baloo_chettan.xml,a\1\a1b5b489a15a1a479bce0db57c4d82e4566f9c7e
 V

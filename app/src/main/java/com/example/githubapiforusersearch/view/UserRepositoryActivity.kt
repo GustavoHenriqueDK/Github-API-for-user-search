@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapiforusersearch.R
+import com.example.githubapiforusersearch.controller.UserRepositoryController
 import com.example.githubapiforusersearch.model.Repository
 import com.example.githubapiforusersearch.rest.EndPoint
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration
@@ -48,88 +49,20 @@ class UserRepositoryActivity : AppCompatActivity() {
                 }
                 recyclerViewRepositoryAdapter.notifyDataSetChanged()
             }
-
             override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
                 Log.e("An error occurred ", t.toString())
             }
         })
     }
 
+    private fun responseRepositoryInformations(response: Response<List<Repository>>) {
+        val userRepositoryController = UserRepositoryController()
+        userRepositoryController.addAllRepositoriesInList(response, repositoryList)
+    }
+
     private fun showEmptyImageInScreen() {
         constraintLayoutEmptyImage.visibility = View.VISIBLE
         constraintLayoutRecyclerView.visibility = View.GONE
-    }
-
-    private fun responseRepositoryInformations(response: Response<List<Repository>>) {
-        lateinit var repository: Repository
-        for (i in response.body()?.indices!!) {
-            try {
-                if (hasLanguageInRepository(response, i) && hasDescriptionInRepository(
-                        response,
-                        i
-                    )
-                ) {
-                    repository = Repository(
-                        response.body()!![i].name,
-                        response.body()!![i].language,
-                        response.body()!![i].description
-                    )
-                }
-            } catch (e: Exception) {
-                Log.e("Error ", e.toString())
-            }
-
-            try {
-                if (!hasLanguageInRepository(response, i) && !hasDescriptionInRepository(
-                        response,
-                        i
-                    )
-                ) {
-                    repository =
-                        Repository(
-                            response.body()!![i].name,
-                            "Não especificado",
-                            "Não especificado"
-                        )
-                }
-            } catch (e: Exception) {
-                Log.e("Error ", e.toString())
-            }
-            try {
-                if (!hasLanguageInRepository(response, i)) {
-                    repository = Repository(
-                        response.body()!![i].name,
-                        "Não especificado",
-                        response.body()!![i].description
-                    )
-                }
-            } catch (e: Exception) {
-                Log.e("Error ", e.toString())
-            }
-            try {
-                if (!hasDescriptionInRepository(response, i)) {
-                    repository = Repository(
-                        response.body()!![i].name,
-                        response.body()!![i].language,
-                        "Não especificado"
-                    )
-                }
-            } catch (e: Exception) {
-                Log.e("Error ", e.toString())
-            }
-            repositoryList.add(repository)
-        }
-    }
-
-    private fun hasDescriptionInRepository(
-        response: Response<List<Repository>>,
-        index: Int
-    ): Boolean {
-        return response.body()?.get(index)?.description != null
-    }
-
-    private fun hasLanguageInRepository(response: Response<List<Repository>>, index: Int): Boolean {
-        return response.body()?.get(index)?.language != null
     }
 
     private fun setRepositoryAdapter() {
