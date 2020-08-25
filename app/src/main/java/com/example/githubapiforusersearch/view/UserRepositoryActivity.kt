@@ -11,9 +11,11 @@ import com.example.githubapiforusersearch.rest.EndPoint
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration
 import com.example.githubapiforusersearch.view.adapter.RecyclerViewRepositoryAdapter
 import kotlinx.android.synthetic.main.activity_user_repository.*
+import kotlinx.android.synthetic.main.recycler_view_repository_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class UserRepositoryActivity : AppCompatActivity() {
 
@@ -42,7 +44,11 @@ class UserRepositoryActivity : AppCompatActivity() {
                 response: Response<List<Repository>>
             ) {
                 if (response.body()!!.isNotEmpty()) {
-                    responseRepositoryInformations(response)
+                    try {
+                        responseRepositoryInformations(response)
+                    } catch (e: Exception) {
+                        Log.e("An error occurred ", e.toString())
+                    }
                 } else {
                     showEmptyImageInScreen()
                 }
@@ -65,6 +71,7 @@ class UserRepositoryActivity : AppCompatActivity() {
         for (i in response.body()?.indices!!) {
             if (hasLanguageInRepository(response, i) && hasDescriptionInRepository(response, i)) {
                 repository = Repository(response.body()!![i].name, response.body()!![i].language, response.body()!![i].description)
+                //textViewRepositoryDescription.text = "test"
             }
             if (!hasLanguageInRepository(response, i) && !hasDescriptionInRepository(response, i)) {
                 repository = Repository(response.body()!![i].name, "Não especificado", "Não especificado")

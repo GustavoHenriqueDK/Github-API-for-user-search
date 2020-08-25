@@ -1,12 +1,15 @@
 package com.example.githubapiforusersearch.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubapiforusersearch.R
 import com.example.githubapiforusersearch.model.Repository
 import kotlinx.android.synthetic.main.recycler_view_repository_layout.view.*
+import retrofit2.Response
 
 class RecyclerViewRepositoryAdapter(
     private val repositoryList: List<Repository>
