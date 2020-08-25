@@ -66,6 +66,9 @@ class UserRepositoryActivity : AppCompatActivity() {
             if (hasLanguageInRepository(response, i) && hasDescriptionInRepository(response, i)) {
                 repository = Repository(response.body()!![i].name, response.body()!![i].language, response.body()!![i].description)
             }
+            if (!hasLanguageInRepository(response, i) && !hasDescriptionInRepository(response, i)) {
+                repository = Repository(response.body()!![i].name, "Não especificado", "Não especificado")
+            }
             if (!hasLanguageInRepository(response, i)) {
                 repository = Repository(response.body()!![i].name, "Não especificado", response.body()!![i].description)
             }
