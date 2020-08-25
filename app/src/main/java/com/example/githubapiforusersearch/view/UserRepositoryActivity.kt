@@ -63,13 +63,24 @@ class UserRepositoryActivity : AppCompatActivity() {
     private fun responseRepositoryInformations(response: Response<List<Repository>>) {
         lateinit var repository: Repository
         for (i in response.body()?.indices!!) {
-            repository = if (hasLanguageInRepository(response, i)) {
-                Repository(response.body()!![i].name, language = response.body()!![i].language)
-            } else {
-                Repository(response.body()!![i].name, language = "Não especificado")
+            if (hasLanguageInRepository(response, i) && hasDescriptionInRepository(response, i)) {
+                repository = Repository(response.body()!![i].name, response.body()!![i].language, response.body()!![i].description)
+            }
+            if (!hasLanguageInRepository(response, i)) {
+                repository = Repository(response.body()!![i].name, "Não especificado", response.body()!![i].description)
+            }
+            if (!hasDescriptionInRepository(response, i)) {
+                repository = Repository(response.body()!![i].name, response.body()!![i].language, "Não especificado")
             }
             repositoryList.add(repository)
         }
+    }
+
+    private fun hasDescriptionInRepository(
+        response: Response<List<Repository>>,
+        index: Int
+    ): Boolean {
+        return response.body()?.get(index)?.description != null
     }
 
     private fun hasLanguageInRepository(response: Response<List<Repository>>, index: Int): Boolean {

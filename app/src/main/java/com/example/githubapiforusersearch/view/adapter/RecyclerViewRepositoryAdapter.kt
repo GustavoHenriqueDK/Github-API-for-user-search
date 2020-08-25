@@ -31,6 +31,7 @@ class RecyclerViewRepositoryAdapter(
         fun bindItems(repository: Repository) {
             itemView.textViewRepositoryName.text = repository.name
             itemView.textViewRepositoryLanguage.text = repository.language
+            itemView.textViewRepositoryDescription.text = repository.description
         }
     }
 }
