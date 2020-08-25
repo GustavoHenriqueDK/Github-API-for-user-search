@@ -63,45 +63,60 @@ class UserRepositoryActivity : AppCompatActivity() {
     private fun responseRepositoryInformations(response: Response<List<Repository>>) {
         lateinit var repository: Repository
         for (i in response.body()?.indices!!) {
-            if (hasLanguageInRepository(response, i) && hasDescriptionInRepository(
-                    response,
-                    i
-                )
-            ) {
-                repository = Repository(
-                    response.body()!![i].name,
-                    response.body()!![i].language,
-                    response.body()!![i].description
-                )
-                //textViewRepositoryDescription.text = "test"
+            try {
+                if (hasLanguageInRepository(response, i) && hasDescriptionInRepository(
+                        response,
+                        i
+                    )
+                ) {
+                    repository = Repository(
+                        response.body()!![i].name,
+                        response.body()!![i].language,
+                        response.body()!![i].description
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("Error ", e.toString())
             }
-            if (!hasLanguageInRepository(response, i) && !hasDescriptionInRepository(
-                    response,
-                    i
-                )
-            ) {
-                repository =
-                    Repository(
+
+            try {
+                if (!hasLanguageInRepository(response, i) && !hasDescriptionInRepository(
+                        response,
+                        i
+                    )
+                ) {
+                    repository =
+                        Repository(
+                            response.body()!![i].name,
+                            "Não especificado",
+                            "Não especificado"
+                        )
+                }
+            } catch (e: Exception) {
+                Log.e("Error ", e.toString())
+            }
+            try {
+                if (!hasLanguageInRepository(response, i)) {
+                    repository = Repository(
                         response.body()!![i].name,
                         "Não especificado",
+                        response.body()!![i].description
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("Error ", e.toString())
+            }
+            try {
+                if (!hasDescriptionInRepository(response, i)) {
+                    repository = Repository(
+                        response.body()!![i].name,
+                        response.body()!![i].language,
                         "Não especificado"
                     )
+                }
+            } catch (e: Exception) {
+                Log.e("Error ", e.toString())
             }
-            if (!hasLanguageInRepository(response, i)) {
-                repository = Repository(
-                    response.body()!![i].name,
-                    "Não especificado",
-                    response.body()!![i].description
-                )
-            }
-            if (!hasDescriptionInRepository(response, i)) {
-                repository = Repository(
-                    response.body()!![i].name,
-                    response.body()!![i].language,
-                    "Não especificado"
-                )
-            }
-            Log.e("teste", repositoryList[i].name)
             repositoryList.add(repository)
         }
     }
