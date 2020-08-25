@@ -6,6 +6,8 @@ data class Repository(
     @SerializedName("name")
     var name: String,
     @SerializedName("language")
-    var language: String
+    var language: String,
+    @SerializedName("description")
+    val description: String
 ) {
 }

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapiforusersearch.R
+import com.example.githubapiforusersearch.controller.UserRepositoryController
 import com.example.githubapiforusersearch.model.Repository
 import com.example.githubapiforusersearch.rest.EndPoint
 import com.example.githubapiforusersearch.rest.RetrofitConfiguration
@@ -48,32 +49,20 @@ class UserRepositoryActivity : AppCompatActivity() {
                 }
                 recyclerViewRepositoryAdapter.notifyDataSetChanged()
             }
-
             override fun onFailure(call: Call<List<Repository>>, t: Throwable) {
                 Log.e("An error occurred ", t.toString())
             }
         })
     }
 
+    private fun responseRepositoryInformations(response: Response<List<Repository>>) {
+        val userRepositoryController = UserRepositoryController()
+        userRepositoryController.addAllRepositoriesInList(response, repositoryList)
+    }
+
     private fun showEmptyImageInScreen() {
         constraintLayoutEmptyImage.visibility = View.VISIBLE
         constraintLayoutRecyclerView.visibility = View.GONE
-    }
-
-    private fun responseRepositoryInformations(response: Response<List<Repository>>) {
-        lateinit var repository: Repository
-        for (i in response.body()?.indices!!) {
-            repository = if (hasLanguageInRepository(response, i)) {
-                Repository(response.body()!![i].name, language = response.body()!![i].language)
-            } else {
-                Repository(response.body()!![i].name, language = "Não especificado")
-            }
-            repositoryList.add(repository)
-        }
-    }
-
-    private fun hasLanguageInRepository(response: Response<List<Repository>>, index: Int): Boolean {
-        return response.body()?.get(index)?.language != null
     }
 
     private fun setRepositoryAdapter() {
